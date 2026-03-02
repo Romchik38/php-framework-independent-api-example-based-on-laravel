@@ -1,6 +1,5 @@
 # Todo
 
-- move app from the symfony repo without any changes
 - create a table
 - create a seeder
 - create a repository
