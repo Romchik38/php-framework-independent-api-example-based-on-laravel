@@ -1,5 +1,5 @@
 # Todo
 
-- Install Laravel
-- Config Docker
-- Check how it works
+- move app from symfony repo
+- create a table
+- move tests
