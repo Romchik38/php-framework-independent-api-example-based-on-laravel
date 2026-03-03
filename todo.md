@@ -1,7 +1,3 @@
 # Todo
 
-- create tests:
-  - test table carriers
-  - add testing data
-  - repository
-  - integration
+- calculate command - do not throws exception

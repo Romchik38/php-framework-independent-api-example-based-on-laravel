@@ -13,11 +13,9 @@ class CarrierCalculateFormControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_the_application_returns_a_successful_response(): void
-    {
-
-    }
-
+    /**
+     * Success test.
+     */    
     public function testCalculateShippingCostsSuccess(): void
     {
         $this->seed(TestCarrierSeeder::class);
@@ -51,5 +49,73 @@ class CarrierCalculateFormControllerTest extends TestCase
         $this->assertSame($weight, $result[$weightField]);
         $this->assertSame('EUR', $result[CalculateView::CURRENCY_FIELD]);
         $this->assertSame($weight, $result[CalculateView::PRICE_FIELD]);
+    }
+
+    /**
+     * Error test - wrong carrier slug
+     */    
+    public function testCalculateShippingCostsErrorSlug(): void
+    {
+        $this->seed(TestCarrierSeeder::class);
+
+        $slugField = CalculateCommand::slugField;
+        $weightField  = CalculateCommand::weightField;
+        $carrierSlug = 'testcompany10';  // wrong
+        $weight = 10;
+
+        $response = $this->post(
+            '/api/shipping/calculate', 
+            [
+                $weightField => $weight,
+                $slugField => $carrierSlug,
+            ],
+            [
+                'Content-Type' => 'multipart/form-data'
+            ]
+
+        );
+
+        $response->assertStatus(400);
+        $response->assertHeader('content-type', 'application/json');
+
+
+        $content = $response->json();
+        $status = $content[Dto::STATUS_FIELD];
+
+        $this->assertSame(Dto::ERROR_FIELD, $status);
     }    
+
+    /**
+     * Error test - wrong weight
+     */       
+    public function testCalculateShippingCostsErrorWeight(): void
+    {
+        $this->seed(TestCarrierSeeder::class);
+
+        $slugField = CalculateCommand::slugField;
+        $weightField  = CalculateCommand::weightField;
+        $carrierSlug = 'testcarrier1';
+        $weight = 0;    // wrong
+
+        $response = $this->post(
+            '/api/shipping/calculate', 
+            [
+                $weightField => $weight,
+                $slugField => $carrierSlug,
+            ],
+            [
+                'Content-Type' => 'multipart/form-data'
+            ]
+
+        );
+
+        $response->assertStatus(400);
+        $response->assertHeader('content-type', 'application/json');
+
+
+        $content = $response->json();
+        $status = $content[Dto::STATUS_FIELD];
+
+        $this->assertSame(Dto::ERROR_FIELD, $status);
+    }     
 }
