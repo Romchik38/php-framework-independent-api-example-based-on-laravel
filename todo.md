@@ -1,6 +1,5 @@
 # Todo
 
-- create a repository
 - create a blade view
 - create controller:
   - get
