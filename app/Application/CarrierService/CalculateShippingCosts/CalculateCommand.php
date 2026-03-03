@@ -26,10 +26,10 @@ final class CalculateCommand
         $slug = $hash[self::slugField] ?? '';
         $weight = $hash[self::weightField] ?? '';
         if (gettype($slug) !== 'string') {
-            throw new InvalidArgumentException('param carrier slug is invalid');
+            $slug = (string) $slug;
         }
         if (gettype($weight) !== 'string') {
-            throw new InvalidArgumentException('param weight is invalid');
+            $weight = (string) $weight;
         }
         return new self($slug, $weight);
     }

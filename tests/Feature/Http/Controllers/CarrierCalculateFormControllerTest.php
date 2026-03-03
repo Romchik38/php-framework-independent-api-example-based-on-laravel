@@ -36,7 +36,7 @@ class CarrierCalculateFormControllerTest extends TestCase
             ]
 
         );
-       
+        
         $response->assertStatus(200);
         $response->assertHeader('content-type', 'application/json');
 
