@@ -21,15 +21,15 @@ class CarrierSeeder extends Seeder
                 'slug' => 'transcompany',
                 'calculator' => 'App\Application\CarrierService\ShippingCostCalculators\TranscompanyCalculator',
                 'created_at' => $time,
-                'updated_at' => $time
+                'updated_at' => $time,
             ],
             [
                 'name' => 'PackGroup',
                 'slug' => 'packgroup',
                 'calculator' => 'App\Application\CarrierService\ShippingCostCalculators\PackGroupCalculator',
                 'created_at' => $time,
-                'updated_at' => $time
-            ],            
+                'updated_at' => $time,
+            ],
         ]);
     }
 }

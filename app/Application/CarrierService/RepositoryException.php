@@ -6,6 +6,4 @@ namespace App\Application\CarrierService;
 
 use RuntimeException;
 
-final class RepositoryException extends RuntimeException
-{
-}
+final class RepositoryException extends RuntimeException {}

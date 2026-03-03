@@ -15,17 +15,16 @@ class CarrierCalculateFormController extends Controller
 {
     public function __construct(
         private readonly CarrierService $carrierService
-    ) {
-    }
+    ) {}
 
     public function index()
     {
         $carriers = $this->carrierService->list();
-        
+
         return view('calculate', [
             'carriers' => $carriers,
             'carrier_slug_field' => CalculateCommand::slugField,
-            'carrier_weight_field' => CalculateCommand::weightField,            
+            'carrier_weight_field' => CalculateCommand::weightField,
         ]);
     }
 
@@ -36,10 +35,12 @@ class CarrierCalculateFormController extends Controller
             $command = CalculateCommand::fromHash($params);
             $viewDto = $this->carrierService->calculateShippingCosts($command);
             $successDto = new SuccessDto($viewDto);
+
             return new JsonResponse($successDto);
-        } catch (CalculateException | InvalidArgumentException $e) {
+        } catch (CalculateException|InvalidArgumentException $e) {
             $errorDto = new ErrorDto($e->getMessage());
+
             return new JsonResponse($errorDto, 400);
         }
-    }    
+    }
 }

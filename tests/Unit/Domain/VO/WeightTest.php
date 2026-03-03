@@ -10,14 +10,14 @@ use PHPUnit\Framework\TestCase;
 
 class WeightTest extends TestCase
 {
-    public function testZeroWeight(): void
+    public function test_zero_weight(): void
     {
         $this->expectException(InvalidArgumentException::class);
 
         new Weight(0);
     }
 
-    public function testNegativeWeight(): void
+    public function test_negative_weight(): void
     {
         $this->expectException(InvalidArgumentException::class);
 

@@ -6,6 +6,4 @@ namespace App\Application\CarrierService;
 
 use RuntimeException;
 
-final class NoSuchCarrierException extends RuntimeException
-{
-}
+final class NoSuchCarrierException extends RuntimeException {}

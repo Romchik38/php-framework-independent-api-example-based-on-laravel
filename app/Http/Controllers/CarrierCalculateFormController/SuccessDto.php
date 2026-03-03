@@ -10,14 +10,13 @@ final class SuccessDto extends Dto
 {
     public function __construct(
         public readonly CalculateView $data,
-    ) {
-    }
+    ) {}
 
     public function jsonSerialize(): mixed
     {
         return [
             $this::STATUS_FIELD => $this::SUCCESS_FIELD,
-            $this::RESULT_FIELD => $this->data
+            $this::RESULT_FIELD => $this->data,
         ];
     }
 }

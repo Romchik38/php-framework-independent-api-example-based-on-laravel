@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 class NameTest extends TestCase
 {
-    public function testEmptyString(): void
+    public function test_empty_string(): void
     {
         $this->expectException(InvalidArgumentException::class);
         new Name('');

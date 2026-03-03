@@ -15,20 +15,19 @@ class CarrierRepositoryTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testList(): void
+    public function test_list(): void
     {
         $this->seed(TestCarrierSeeder::class);
-        $repository = new CarrierRepositoryUsesBuilder();
+        $repository = new CarrierRepositoryUsesBuilder;
 
         $result = $repository->list();
         $this->assertSame(1, count($result));
     }
 
-    public function testFindCarrierBySlug(): void
+    public function test_find_carrier_by_slug(): void
     {
         $this->seed(TestCarrierSeeder::class);
-        $repository = new CarrierRepositoryUsesBuilder();
-
+        $repository = new CarrierRepositoryUsesBuilder;
 
         $slug = new Slug('testcarrier1');
         $carrier = $repository->findCarrierBySlug($slug);
@@ -37,6 +36,4 @@ class CarrierRepositoryTest extends TestCase
         $price = $carrier->calculateShippingPriceByWeight(new Weight(10.5));
         $this->assertSame(10.5, $price->value);
     }
-
-
 }

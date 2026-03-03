@@ -12,7 +12,7 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(
-            'App\Application\CarrierService\CarrierRepositoryInterface', 
+            'App\Application\CarrierService\CarrierRepositoryInterface',
             'App\Infrastructure\Persist\Carrier\CarrierRepositoryUsesBuilder'
         );
     }

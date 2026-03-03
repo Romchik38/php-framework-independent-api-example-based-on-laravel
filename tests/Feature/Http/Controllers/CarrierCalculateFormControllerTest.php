@@ -15,28 +15,28 @@ class CarrierCalculateFormControllerTest extends TestCase
 
     /**
      * Success test.
-     */    
-    public function testCalculateShippingCostsSuccess(): void
+     */
+    public function test_calculate_shipping_costs_success(): void
     {
         $this->seed(TestCarrierSeeder::class);
 
         $slugField = CalculateCommand::slugField;
-        $weightField  = CalculateCommand::weightField;
+        $weightField = CalculateCommand::weightField;
         $carrierSlug = 'testcarrier1';
         $weight = 10;
-        
+
         $response = $this->post(
-            '/api/shipping/calculate', 
+            '/api/shipping/calculate',
             [
                 $weightField => $weight,
                 $slugField => $carrierSlug,
             ],
             [
-                'Content-Type' => 'multipart/form-data'
+                'Content-Type' => 'multipart/form-data',
             ]
 
         );
-        
+
         $response->assertStatus(200);
         $response->assertHeader('content-type', 'application/json');
 
@@ -53,24 +53,24 @@ class CarrierCalculateFormControllerTest extends TestCase
 
     /**
      * Error test - wrong carrier slug
-     */    
-    public function testCalculateShippingCostsErrorSlug(): void
+     */
+    public function test_calculate_shipping_costs_error_slug(): void
     {
         $this->seed(TestCarrierSeeder::class);
 
         $slugField = CalculateCommand::slugField;
-        $weightField  = CalculateCommand::weightField;
+        $weightField = CalculateCommand::weightField;
         $carrierSlug = 'testcompany10';  // wrong
         $weight = 10;
 
         $response = $this->post(
-            '/api/shipping/calculate', 
+            '/api/shipping/calculate',
             [
                 $weightField => $weight,
                 $slugField => $carrierSlug,
             ],
             [
-                'Content-Type' => 'multipart/form-data'
+                'Content-Type' => 'multipart/form-data',
             ]
 
         );
@@ -78,33 +78,32 @@ class CarrierCalculateFormControllerTest extends TestCase
         $response->assertStatus(400);
         $response->assertHeader('content-type', 'application/json');
 
-
         $content = $response->json();
         $status = $content[Dto::STATUS_FIELD];
 
         $this->assertSame(Dto::ERROR_FIELD, $status);
-    }    
+    }
 
     /**
      * Error test - wrong weight
-     */       
-    public function testCalculateShippingCostsErrorWeight(): void
+     */
+    public function test_calculate_shipping_costs_error_weight(): void
     {
         $this->seed(TestCarrierSeeder::class);
 
         $slugField = CalculateCommand::slugField;
-        $weightField  = CalculateCommand::weightField;
+        $weightField = CalculateCommand::weightField;
         $carrierSlug = 'testcarrier1';
         $weight = 0;    // wrong
 
         $response = $this->post(
-            '/api/shipping/calculate', 
+            '/api/shipping/calculate',
             [
                 $weightField => $weight,
                 $slugField => $carrierSlug,
             ],
             [
-                'Content-Type' => 'multipart/form-data'
+                'Content-Type' => 'multipart/form-data',
             ]
 
         );
@@ -112,10 +111,9 @@ class CarrierCalculateFormControllerTest extends TestCase
         $response->assertStatus(400);
         $response->assertHeader('content-type', 'application/json');
 
-
         $content = $response->json();
         $status = $content[Dto::STATUS_FIELD];
 
         $this->assertSame(Dto::ERROR_FIELD, $status);
-    }     
+    }
 }

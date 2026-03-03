@@ -6,9 +6,8 @@ namespace Tests\Unit\Application\CarrierService\Helpers;
 
 use App\Application\CarrierService\CarrierRepositoryInterface;
 use App\Application\CarrierService\NoSuchCarrierException;
-use App\Domain\Carrier\VO\Slug;
 use App\Domain\Carrier\Carrier;
-use Doctrine\ORM\Query\Expr\Func;
+use App\Domain\Carrier\VO\Slug;
 use InvalidArgumentException;
 
 final class CarrierRepository implements CarrierRepositoryInterface
@@ -38,6 +37,7 @@ final class CarrierRepository implements CarrierRepositoryInterface
                 $key
             ));
         }
+
         return $carrier;
     }
 

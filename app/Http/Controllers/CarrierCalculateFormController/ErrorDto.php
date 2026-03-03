@@ -20,7 +20,7 @@ final class ErrorDto extends Dto
     {
         return [
             $this::STATUS_FIELD => $this::ERROR_FIELD,
-            $this::RESULT_FIELD => $this->errorMessage
+            $this::RESULT_FIELD => $this->errorMessage,
         ];
     }
 }

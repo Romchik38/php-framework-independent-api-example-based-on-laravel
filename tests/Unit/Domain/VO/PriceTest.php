@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 class PriceTest extends TestCase
 {
-    public function testNegativePrice(): void
+    public function test_negative_price(): void
     {
         $this->expectException(InvalidArgumentException::class);
         new Price(-1);

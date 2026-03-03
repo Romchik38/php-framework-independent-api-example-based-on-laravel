@@ -21,8 +21,8 @@ class TestCarrierSeeder extends Seeder
                 'slug' => 'testcarrier1',
                 'calculator' => 'Tests\Feature\Infrastructure\Persist\Carrier\Helpers\CarrierCalculator',
                 'created_at' => $time,
-                'updated_at' => $time
-            ],            
+                'updated_at' => $time,
+            ],
         ]);
     }
 }

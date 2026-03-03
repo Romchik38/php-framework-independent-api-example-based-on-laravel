@@ -29,7 +29,7 @@ final readonly class CarrierRepositoryUsesBuilder implements CarrierRepositoryIn
                 $key
             ));
         }
-        
+
         return $this->createFromRow($row);
     }
 
@@ -39,15 +39,16 @@ final readonly class CarrierRepositoryUsesBuilder implements CarrierRepositoryIn
         $rows = DB::table('carriers')
             ->select('name', 'slug', 'calculator')
             ->get();
-        foreach($rows as $row) {
+        foreach ($rows as $row) {
             $carriers[] = $this->createFromRow($row);
         }
+
         return $carriers;
     }
 
     /** @throws RepositoryException */
     private function createFromRow(\stdClass $row): Carrier
-    { 
+    {
         $name = $row->name ?? null;
         if ($name === null) {
             throw new RepositoryException('Carrier name is invalid');
@@ -67,7 +68,7 @@ final readonly class CarrierRepositoryUsesBuilder implements CarrierRepositoryIn
             $carrier = new Carrier(
                 new Name($name),
                 new Slug($slug),
-                new $classname()
+                new $classname
             );
         } catch (InvalidArgumentException $e) {
             throw new RepositoryException(sprintf(

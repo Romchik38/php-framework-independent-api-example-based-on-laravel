@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Application\CarrierService\ShippingCostCalculators;
 
-use PHPUnit\Framework\TestCase;
 use App\Application\CarrierService\ShippingCostCalculators\PackGroupCalculator;
 use App\Domain\Carrier\VO\Weight;
+use PHPUnit\Framework\TestCase;
 
 class PackGroupCalculatorTest extends TestCase
 {
-    public function testCalculateShippingCosts(): void
+    public function test_calculate_shipping_costs(): void
     {
-        $calculator = new PackGroupCalculator();
+        $calculator = new PackGroupCalculator;
         $weight1 = new Weight(1.0);
         $price1 = $calculator->calculateShippingCosts($weight1);
         $this->assertSame(1.0, $price1->value);

@@ -15,8 +15,7 @@ final class Carrier
         public Name $name,
         public Slug $slug,
         public readonly ShippingCostCalculatorInterface $calculator
-    ) {
-    }
+    ) {}
 
     public function calculateShippingPriceByWeight(Weight $weight): Price
     {

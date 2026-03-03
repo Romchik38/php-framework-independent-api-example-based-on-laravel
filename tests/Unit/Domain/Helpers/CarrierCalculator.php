@@ -12,8 +12,7 @@ final class CarrierCalculator implements ShippingCostCalculatorInterface
 {
     public function __construct(
         public readonly Price $price
-    ) {
-    }
+    ) {}
 
     public function calculateShippingCosts(Weight $weight): Price
     {

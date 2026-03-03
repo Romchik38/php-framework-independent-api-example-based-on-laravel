@@ -6,18 +6,18 @@ namespace Tests\Unit\Application\CarrierService;
 
 use App\Application\CarrierService\CalculateShippingCosts\CalculateCommand;
 use App\Application\CarrierService\CalculateShippingCosts\CalculateException;
-use PHPUnit\Framework\TestCase;
 use App\Application\CarrierService\CarrierService;
 use App\Domain\Carrier\Carrier;
 use App\Domain\Carrier\VO\Name;
 use App\Domain\Carrier\VO\Price;
 use App\Domain\Carrier\VO\Slug;
+use PHPUnit\Framework\TestCase;
 use Tests\Unit\Application\CarrierService\Helpers\CarrierCalculator;
 use Tests\Unit\Application\CarrierService\Helpers\CarrierRepository;
 
 class CarrierServiceTest extends TestCase
 {
-    public function testCalculateShippingCosts(): void
+    public function test_calculate_shipping_costs(): void
     {
         $carrierSlug = 'Carrier1';
         $carrierWeight = '2.5';
@@ -38,7 +38,7 @@ class CarrierServiceTest extends TestCase
         $this->assertSame(10.0, $calculateView->price->value);
     }
 
-    public function testCalculateShippingCostsNoSuchCarrier(): void
+    public function test_calculate_shipping_costs_no_such_carrier(): void
     {
         $carrierSlug = 'carrier1';
         $carrierWeight = '2.5';

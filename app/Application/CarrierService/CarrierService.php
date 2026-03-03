@@ -16,8 +16,7 @@ final class CarrierService
 {
     public function __construct(
         private readonly CarrierRepositoryInterface $repository
-    ) {
-    }
+    ) {}
 
     /**
      * @throws CalculateException
@@ -28,7 +27,7 @@ final class CarrierService
             $slug = new Slug($command->carrierSlug);
             $weight = Weight::fromString($command->weight);
             $carrier = $this->repository->findCarrierBySlug($slug);
-        } catch (NoSuchCarrierException | InvalidArgumentException  $e) {
+        } catch (NoSuchCarrierException|InvalidArgumentException  $e) {
             throw new CalculateException($e->getMessage());
         }
 
@@ -54,6 +53,7 @@ final class CarrierService
                 $carrier->slug
             );
         }
+
         return $dtos;
     }
 }
