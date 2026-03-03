@@ -3,7 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Application\CarrierService\CalculateShippingCosts\CalculateCommand;
+use App\Application\CarrierService\CalculateShippingCosts\CalculateException;
 use App\Application\CarrierService\CarrierService;
+use App\Http\Controllers\CarrierCalculateFormController\ErrorDto;
+use App\Http\Controllers\CarrierCalculateFormController\SuccessDto;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use InvalidArgumentException;
 
 class CarrierCalculateFormController extends Controller
 {
@@ -23,4 +29,17 @@ class CarrierCalculateFormController extends Controller
         ]);
     }
 
+    public function calculate(Request $request): JsonResponse
+    {
+        $params = $request->request->all();
+        try {
+            $command = CalculateCommand::fromHash($params);
+            $viewDto = $this->carrierService->calculateShippingCosts($command);
+            $successDto = new SuccessDto($viewDto);
+            return new JsonResponse($successDto);
+        } catch (CalculateException | InvalidArgumentException $e) {
+            $errorDto = new ErrorDto($e->getMessage());
+            return new JsonResponse($errorDto, 400);
+        }
+    }    
 }

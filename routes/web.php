@@ -5,3 +5,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [CarrierCalculateFormController::class, 'index'])
     ->name('home');
+
+Route::post('/api/shipping/calculate', [CarrierCalculateFormController::class, 'calculate'])
+    ->name('api.shipping.calculate');
