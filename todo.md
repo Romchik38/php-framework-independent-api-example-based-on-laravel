@@ -1,6 +1,7 @@
 # Todo
 
-- move tests
 - create tests:
+  - test table carriers
+  - add testing data
   - repository
   - integration
