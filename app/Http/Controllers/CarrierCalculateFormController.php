@@ -32,8 +32,12 @@ class CarrierCalculateFormController extends Controller
     public function calculate(Request $request): JsonResponse
     {
         $params = $request->request->all();
+        $weight = (string) $params[CalculateCommand::weightField];
+        $slug = (string) $params[CalculateCommand::slugField];
         try {
-            $command = CalculateCommand::fromHash($params);
+            
+            $command = new CalculateCommand($slug, $weight);
+            
             $viewDto = $this->carrierService->calculateShippingCosts($command);
             $successDto = new SuccessDto($viewDto);
             return new JsonResponse($successDto);
