@@ -24,22 +24,32 @@ Development goals – to demonstrate how applications can be built without being
 
 ## Install
 
-1. Docker install:
+1. Install composer `composer install`
+
+2. Create .env
+    - make a copy from .env.example
+    - set DB_CONNECTION to mysql
+    - set DB_HOST to mysql
+    - set DB_PORT to 3306
+    - set DB_PASSWORD
+    - set DB_USERNAME (not root)
+
+3. Docker install:
 
    ```bash
    vendor/bin/sail build
    vendor/bin/sail up -d
    ```
 
-2. App install:
+4. App install:
 
    ```bash
    vendor/bin/sail shell
-   vendor/bin/composer install  # Composer install
    php artisan migrate --seed
+   php artisan key:generate
    ```
 
-3. Check - [localhost:8000](http://localhost:8000)
+5. Check - [localhost](http://localhost)
 
 ## Frontend form
 
