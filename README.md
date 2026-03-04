@@ -24,16 +24,8 @@ Development goals – to demonstrate how applications can be built without being
 
 ## Install
 
-1. Install composer `composer install`
-
-2. Create .env
-    - make a copy from .env.example
-    - set DB_CONNECTION to mysql
-    - set DB_HOST to mysql
-    - set DB_PORT to 3306
-    - set DB_PASSWORD
-    - set DB_USERNAME (not root)
-
+1. Install composer `composer install`.
+2. Create `.env` - make a copy from .env.example.
 3. Docker install:
 
    ```bash

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Unit\Infrastructure\Persist\Carrier;
+namespace Tests\Feature\Infrastructure\Persist\Carrier;
 
 use App\Domain\Carrier\VO\Slug;
 use App\Domain\Carrier\VO\Weight;
