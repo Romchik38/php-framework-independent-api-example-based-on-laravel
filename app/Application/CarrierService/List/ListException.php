@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Application\CarrierService\CalculateShippingCosts;
+namespace App\Application\CarrierService\List;
 
 use RuntimeException;
 
