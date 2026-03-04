@@ -19,6 +19,7 @@ class CarrierCalculateFormController extends Controller
 
     public function index()
     {
+        // do not catch errors (show common 500 error page)
         $carriers = $this->carrierService->list();
 
         return view('calculate', [
