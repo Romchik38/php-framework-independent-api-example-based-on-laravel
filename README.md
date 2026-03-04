@@ -9,6 +9,8 @@ Contents:
 - Frontend form
 - Backend structure
 - Extension
+- Tests
+- A similar example based on Symfony
 
 ## Description
 
@@ -45,7 +47,7 @@ Development goals – to demonstrate how applications can be built without being
 
 ## Frontend form
 
-Visit `localhost:8000`and use a form to check the api.
+Visit [home page](http://localhost) and use a form to check the api.
 
 ## Backend structure
 
@@ -67,15 +69,20 @@ Calculate command  |        |       View Dto
 Find via VO Slug   |        |       Carrier
                    \/       |
                 Carrier Repository
-                   |
-Use Mysql          |         
-as data            |
-container          |
-                   \/   
-                  Mysql
+                       /\
+Use Mysql              |         
+as data                |
+container              |
+                       \/   
+                      Mysql
 ```
 
 ## Extension
+
+You can extend the aplication by:
+
+- adding a new carrier
+- changing the storage
 
 ### Adding a new carrier
 
@@ -94,3 +101,19 @@ The Carrier service depends on the repository interface.
 
 1. Create a new repository
 2. Register it the [app provider](./app/Providers/AppServiceProvider.php)
+
+## Tests
+
+All classes are covered by tests. You can use `php artisan test`  to run tests inside a container. Also check [test dir](./tests/).
+
+## A similar example based on Symfony
+
+You can check a similar example based on Symfony [here](https://github.com/Romchik38/php-framework-independent-api-example-based-on-symfony).
+
+Differences:
+
+| layer      | this app | symfony example |
+|------------|----------|-----------------|
+| controller | laravel  | symfony         |
+| storage    | mysql    | config          |
+| template   | blade    | twig            |
